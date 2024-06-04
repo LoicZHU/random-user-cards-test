@@ -1,6 +1,9 @@
 {
   "name": "random-user-cards-test",
   "version": "0.0.0",
+  "engines": {
+    "node": "^14.20.0 || ^16.13.0 || ^18.10.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
