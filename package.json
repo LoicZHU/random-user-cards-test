@@ -5,9 +5,19 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "eslint:check": "eslint 'src/**/*.ts'",
+    "eslint:fix": "eslint 'src/**/*.ts' --fix ",
+    "format": "prettier --write 'src/**/*.ts'",
+    "htmlhint:check": "npx htmlhint 'src/**/*.html'",
+    "htmlhint:fix": "prettier --write 'src/**/*.html'",
+    "stylelint:check": "stylelint src/**/*.{css,scss}",
+    "stylelint:fix": "stylelint --fix src/**/*.{css,scss}",
+    "prepare": "husky",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prepare": "husky"
+    "test:watch": "ng test --watch=true",
+    "test:coverage": "ng test --no-watch --code-coverage",
+    "test:headless": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
   "dependencies": {
