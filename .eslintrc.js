@@ -7,6 +7,7 @@ module.exports = {
     'prettier',
     'plugin:prettier/recommended',
   ],
+  ignorePatterns: ['node_modules/', 'build', 'dist/', 'coverage/', 'src/assets/', '.eslintrc.js'],
   rules: {
     'angular/controller-as-vm': ['error', 'never'],
     semi: ['error', 'always'],
