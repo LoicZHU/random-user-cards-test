@@ -1,0 +1,17 @@
+<div class="row">
+  <h2 class="my-2">Users list</h2>
+  <div class="col-9 mx-auto">
+    <div class="row">
+      <div *ngIf="users?.length === 0; else elseUsersLength">
+        <p>No users found.</p>
+      </div>
+      <ng-template #elseUsersLength>
+        <ul class="list-unstyled">
+          <li *ngFor="let user of users">
+            <app-user-card-item [user]="user"></app-user-card-item>
+          </li>
+        </ul>
+      </ng-template>
+    </div>
+  </div>
+</div>

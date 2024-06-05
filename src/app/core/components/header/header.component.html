@@ -1,0 +1,17 @@
+<header role="banner" class="row no-gutters sticky-top">
+  <div class="col-12 bg-primary">
+    <h1 class="p-2 my-auto">
+      <a class="text-white text-decoration-none" routerLink="/">RandomUserCards</a>
+    </h1>
+  </div>
+
+  <div class="col bg-white">
+    <nav class="my-3">
+      <ul class="d-flex justify-content-center list-unstyled">
+        <li *ngFor="let route of routes">
+          <a class="p-2 m-2" [routerLink]="route.path">{{ route.label }}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
