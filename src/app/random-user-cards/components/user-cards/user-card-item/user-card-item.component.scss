@@ -1,0 +1,24 @@
+/* stylelint-disable color-function-notation, alpha-value-notation */
+img {
+  position: relative;
+  background: #fff;
+  padding: 5px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 25%);
+}
+
+.bi {
+  color: lightgray;
+}
+
+.icon-hover {
+  &:hover {
+    color: green;
+    cursor: pointer;
+  }
+}
+
+.hovered {
+  color: green;
+  cursor: pointer;
+}

@@ -1,0 +1,54 @@
+<div *ngIf="user" class="col col-md-6 my-3 mx-auto text-center">
+  <div class="card h-auto">
+    <a [routerLink]="'/users/' + user.login.uuid">
+      <div class="card-header text-center">
+        <picture>
+          <source [srcset]="user.picture.large" type="image/jpg" />
+          <img
+            [src]="user.picture.thumbnail"
+            class="img-fluid rounded-circle"
+            [alt]="'photo of ' + user.name.first + ' ' + user.name.last"
+          />
+        </picture>
+      </div>
+    </a>
+    <div class="card-body border-top">
+      <p class="card-text text-secondary">
+        {{ textPrefix }}
+      </p>
+      <p class="card-text fs-4">{{ textContent }}</p>
+    </div>
+    <div class="card-body fs-5">
+      <i
+        class="bi bi-person icon-hover mx-3"
+        [ngClass]="{ hovered: currentHoveredIcon === userIcon.PERSON }"
+        (mouseover)="onIconHover(userIcon.PERSON)"
+      ></i>
+      <i
+        [ngClass]="{ hovered: currentHoveredIcon === userIcon.EMAIL }"
+        class="bi bi-envelope icon-hover mx-3"
+        (mouseover)="onIconHover(userIcon.EMAIL)"
+      ></i>
+      <i
+        [ngClass]="{ hovered: currentHoveredIcon === userIcon.DATE_OF_BIRTH }"
+        class="bi bi-calendar3 icon-hover mx-3"
+        (mouseover)="onIconHover(userIcon.DATE_OF_BIRTH)"
+      ></i>
+      <i
+        [ngClass]="{ hovered: currentHoveredIcon === userIcon.ADDRESS }"
+        class="bi bi-pin-map icon-hover mx-3"
+        (mouseover)="onIconHover(userIcon.ADDRESS)"
+      ></i>
+      <i
+        [ngClass]="{ hovered: currentHoveredIcon === userIcon.PHONE_NUMBER }"
+        class="bi bi-telephone icon-hover mx-3"
+        (mouseover)="onIconHover(userIcon.PHONE_NUMBER)"
+      ></i>
+      <i
+        [ngClass]="{ hovered: currentHoveredIcon === userIcon.PASSWORD }"
+        class="bi bi-lock icon-hover mx-3"
+        (mouseover)="onIconHover(userIcon.PASSWORD)"
+      ></i>
+    </div>
+  </div>
+</div>

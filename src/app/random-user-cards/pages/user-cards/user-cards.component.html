@@ -1,0 +1,12 @@
+<section>
+  <div
+    class="spinner-border text-primary"
+    role="status"
+    *ngIf="isFetching; else elseIsFetching"
+  >
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <ng-template #elseIsFetching>
+    <app-user-cards-list [users]="users$ | async"></app-user-cards-list>
+  </ng-template>
+</section>
