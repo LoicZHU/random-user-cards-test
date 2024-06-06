@@ -17,6 +17,7 @@ export class UserCardsService {
   get users(): null | User[] {
     return this._users$.getValue();
   }
+
   set users(users: null | User[]) {
     this._users$.next(users);
   }
@@ -27,8 +28,8 @@ export class UserCardsService {
 
   fetchUsers(quantity = this.usersQuantity): Observable<User[]> {
     return this.httpClient.get<UserResults>(`${this.API_URL}?results=${quantity}`).pipe(
-      map((response) => response.results),
-      catchError(() => of([])),
+      map((response) => [...(this.users || []), ...response.results]),
+      catchError(() => of([...(this.users || [])])),
     );
   }
 }
