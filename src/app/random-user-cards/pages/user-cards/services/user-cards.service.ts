@@ -29,11 +29,18 @@ export class UserCardsService {
   fetchUsers(quantity = this.usersQuantity): Observable<User[]> {
     return this.httpClient.get<UserResults>(`${this.API_URL}?results=${quantity}`).pipe(
       map((response) => [...(this.users || []), ...response.results]),
+      map(this.getUsersOrderedByDateOfBirth),
       catchError(() => of([...(this.users || [])])),
     );
   }
 
   deleteUser(uuid: string): void {
     this.users = this.users?.filter((user) => user.login.uuid !== uuid) ?? [];
+  }
+
+  private getUsersOrderedByDateOfBirth(users: User[]): User[] {
+    return users.sort((a, b) => {
+      return new Date(a.dob.date).getTime() - new Date(b.dob.date).getTime();
+    });
   }
 }
