@@ -7,7 +7,10 @@
     <span class="visually-hidden">Loading...</span>
   </div>
   <ng-template #elseIsFetching>
-    <app-user-cards-list [users]="users$ | async"></app-user-cards-list>
+    <app-user-cards-list
+      [hasAddedUsers]="hasAddedUsers"
+      [users]="users$ | async"
+    ></app-user-cards-list>
   </ng-template>
   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <button
