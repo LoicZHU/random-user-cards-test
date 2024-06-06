@@ -1,7 +1,13 @@
 <div *ngIf="user" class="col col-md-6 my-3 mx-auto text-center">
   <div class="card h-auto">
-    <a [routerLink]="'/users/' + user.login.uuid">
-      <div class="card-header text-center">
+    <div class="card-header text-center pb-4">
+      <div class="d-grid d-md-flex justify-content-md-end">
+        <i
+          class="bi bi-x-lg text-danger x-icon"
+          (click)="onDeleteUser(user.login.uuid)"
+        ></i>
+      </div>
+      <a [routerLink]="'/users/' + user.login.uuid">
         <picture>
           <source [srcset]="user.picture.large" type="image/jpg" />
           <img
@@ -10,8 +16,8 @@
             [alt]="'photo of ' + user.name.first + ' ' + user.name.last"
           />
         </picture>
-      </div>
-    </a>
+      </a>
+    </div>
     <div class="card-body border-top">
       <p class="card-text text-secondary">
         {{ textPrefix }}
