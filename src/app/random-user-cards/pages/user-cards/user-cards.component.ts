@@ -13,6 +13,7 @@ import { User } from '../../../core/models/user/user.model';
 export class UserCardsComponent implements OnInit {
   users$?: Observable<null | User[]>;
   isFetching = false;
+  hasAddedUsers = false;
   quantityUsersToAdd = 10;
 
   constructor(private readonly userCardsService: UserCardsService) {}
@@ -28,15 +29,19 @@ export class UserCardsComponent implements OnInit {
         .fetchUsers(2)
         .pipe(
           tap(() => {
-            this.isFetching = true;
+            this.setIsFetching(true);
           }),
           untilDestroyed(this),
         )
         .subscribe((users) => {
-          this.isFetching = false;
+          this.setIsFetching(false);
           this.setUsers(users);
         });
     }
+  }
+
+  private setIsFetching(value: boolean): void {
+    this.isFetching = value;
   }
 
   private setUsers(users: User[]): void {
@@ -55,13 +60,18 @@ export class UserCardsComponent implements OnInit {
       .fetchUsers(quantityUsersToAdd)
       .pipe(
         tap(() => {
-          this.isFetching = true;
+          this.setIsFetching(true);
         }),
         untilDestroyed(this),
       )
       .subscribe((users) => {
-        this.isFetching = false;
+        this.setIsFetching(false);
+        this.setHasAddedUsers(true);
         this.setUsers(users);
       });
+  }
+
+  private setHasAddedUsers(value: boolean): void {
+    this.hasAddedUsers = value;
   }
 }

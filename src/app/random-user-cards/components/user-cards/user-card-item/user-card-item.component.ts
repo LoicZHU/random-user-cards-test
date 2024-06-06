@@ -87,7 +87,6 @@ export class UserCardItemComponent {
   }
 
   onDeleteUser(uuid: string): void {
-    console.log('User deleted with uuid:', uuid);
     this.userCardsService.deleteUser(uuid);
   }
 }
