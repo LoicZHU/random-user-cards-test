@@ -15,7 +15,7 @@ export class UserCardsListComponent implements OnInit, OnChanges {
   filteredUsers?: null | User[];
   genderForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private readonly formBuilder: FormBuilder) {
     this.genderForm = this.formBuilder.group({
       gender: [Gender.ALL],
     });

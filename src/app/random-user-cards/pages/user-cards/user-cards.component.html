@@ -7,6 +7,17 @@
     <span class="visually-hidden">Loading...</span>
   </div>
   <ng-template #elseIsFetching>
+    <h2 class="my-2">Users list</h2>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button
+        type="button"
+        class="btn btn-outline-success"
+        title="Add more users"
+        (click)="onAddUsers(userQuantityToAdd)"
+      >
+        + {{ userQuantityToAdd }} users
+      </button>
+    </div>
     <app-user-cards-list
       [hasAddedUsers]="hasAddedUsers"
       [users]="users$ | async"
@@ -17,9 +28,9 @@
       type="button"
       class="btn btn-outline-success"
       title="Add more users"
-      (click)="onAddUsers(quantityUsersToAdd)"
+      (click)="onAddUsers(userQuantityToAdd)"
     >
-      + {{ quantityUsersToAdd }} users
+      + {{ userQuantityToAdd }} users
     </button>
   </div>
 </section>
