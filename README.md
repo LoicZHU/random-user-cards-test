@@ -37,6 +37,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
   - [x] a gender filter
   - [x] order by date of birth
 
+## Tests
+- Run `npm run test:coverage` to run the tests and generate the coverage report.
+
 ## Notes
 ### Improvements
 - UI/UX
