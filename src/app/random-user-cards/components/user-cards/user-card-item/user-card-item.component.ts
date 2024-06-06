@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { User } from '../../../../core/models/user/user.model';
 import { UserIcon } from '../../../../shared/enums/user-icon.enum';
 import { DatePipe } from '@angular/common';
+import { UserCardsService } from '../../../pages/user-cards/services/user-cards.service';
 
 @Component({
   selector: 'app-user-card-item',
@@ -17,7 +18,10 @@ export class UserCardItemComponent {
   textPrefix = '';
   textContent = '';
 
-  constructor(private readonly datePipe: DatePipe) {}
+  constructor(
+    private readonly datePipe: DatePipe,
+    private readonly userCardsService: UserCardsService,
+  ) {}
 
   ngOnInit(): void {
     if (this.user) {
@@ -80,5 +84,10 @@ export class UserCardItemComponent {
 
   private getFormattedDate(date?: string): string | null {
     return this.datePipe.transform(date, 'M/d/yyyy');
+  }
+
+  onDeleteUser(uuid: string): void {
+    console.log('User deleted with uuid:', uuid);
+    this.userCardsService.deleteUser(uuid);
   }
 }

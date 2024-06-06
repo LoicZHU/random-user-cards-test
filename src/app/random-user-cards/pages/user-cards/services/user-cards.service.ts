@@ -32,4 +32,8 @@ export class UserCardsService {
       catchError(() => of([...(this.users || [])])),
     );
   }
+
+  deleteUser(uuid: string): void {
+    this.users = this.users?.filter((user) => user.login.uuid !== uuid) ?? [];
+  }
 }
