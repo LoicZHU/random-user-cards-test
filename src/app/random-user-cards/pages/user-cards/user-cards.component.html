@@ -9,4 +9,14 @@
   <ng-template #elseIsFetching>
     <app-user-cards-list [users]="users$ | async"></app-user-cards-list>
   </ng-template>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      title="Add more users"
+      (click)="onAddUsers(quantityUsersToAdd)"
+    >
+      + {{ quantityUsersToAdd }} users
+    </button>
+  </div>
 </section>

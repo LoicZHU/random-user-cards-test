@@ -13,6 +13,7 @@ import { User } from '../../../core/models/user/user.model';
 export class UserCardsComponent implements OnInit {
   users$?: Observable<null | User[]>;
   isFetching = false;
+  quantityUsersToAdd = 10;
 
   constructor(private readonly userCardsService: UserCardsService) {}
 
@@ -47,5 +48,20 @@ export class UserCardsComponent implements OnInit {
 
   private subscribeToUsers$(): void {
     this.users$ = this.userCardsService.users$;
+  }
+
+  onAddUsers(quantityUsersToAdd: number): void {
+    this.userCardsService
+      .fetchUsers(quantityUsersToAdd)
+      .pipe(
+        tap(() => {
+          this.isFetching = true;
+        }),
+        untilDestroyed(this),
+      )
+      .subscribe((users) => {
+        this.isFetching = false;
+        this.setUsers(users);
+      });
   }
 }
