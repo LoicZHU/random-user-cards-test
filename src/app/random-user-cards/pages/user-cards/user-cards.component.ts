@@ -14,29 +14,30 @@ export class UserCardsComponent implements OnInit {
   users$?: Observable<null | User[]>;
   isFetching = false;
   hasAddedUsers = false;
-  quantityUsersToAdd = 10;
+  userQuantityToAdd = 10;
 
   constructor(private readonly userCardsService: UserCardsService) {}
 
   ngOnInit(): void {
     this.subscribeToUsers$();
-    this.fetchUsers();
+    this.fetchUsers(2);
   }
 
-  private fetchUsers(): void {
-    if (this.areUsersNullOrEmpty()) {
+  private fetchUsers(userQuantity: number): void {
+    if (this.areUsersNullOrEmpty(this.userCardsService.users)) {
+      this.setIsFetching(true);
+
       this.userCardsService
-        .fetchUsers(2)
+        .fetchUsers(userQuantity)
         .pipe(
-          tap(() => {
-            this.setIsFetching(true);
+          tap((users) => {
+            this.setUsers(users);
+            this.setHasAddedUsers(false);
+            this.setIsFetching(false);
           }),
           untilDestroyed(this),
         )
-        .subscribe((users) => {
-          this.setIsFetching(false);
-          this.setUsers(users);
-        });
+        .subscribe();
     }
   }
 
@@ -47,17 +48,18 @@ export class UserCardsComponent implements OnInit {
   private setUsers(users: User[]): void {
     this.userCardsService.users = users;
   }
-  private areUsersNullOrEmpty(): boolean {
-    return !this.userCardsService.users || this.userCardsService.users?.length === 0;
+
+  private areUsersNullOrEmpty(users: null | User[]): boolean {
+    return !users || users?.length === 0;
   }
 
   private subscribeToUsers$(): void {
     this.users$ = this.userCardsService.users$;
   }
 
-  onAddUsers(quantityUsersToAdd: number): void {
+  onAddUsers(userQuantity: number): void {
     this.userCardsService
-      .fetchUsers(quantityUsersToAdd)
+      .fetchUsers(userQuantity)
       .pipe(
         tap(() => {
           this.setIsFetching(true);
@@ -65,9 +67,9 @@ export class UserCardsComponent implements OnInit {
         untilDestroyed(this),
       )
       .subscribe((users) => {
-        this.setIsFetching(false);
-        this.setHasAddedUsers(true);
         this.setUsers(users);
+        this.setHasAddedUsers(true);
+        this.setIsFetching(false);
       });
   }
 

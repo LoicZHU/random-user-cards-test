@@ -1,7 +1,7 @@
 #! /bin/bash
 
 echo "Building docker image..."
-docker build . --file Dockerfile --tag docker-frontend
+docker build . --file Dockerfile --tag loic-random-user-cards
 
 echo "Running docker container..."
 docker-compose up -d

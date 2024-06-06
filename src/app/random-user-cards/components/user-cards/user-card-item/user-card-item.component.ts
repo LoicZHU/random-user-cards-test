@@ -73,6 +73,7 @@ export class UserCardItemComponent {
       case UserIcon.PHONE_NUMBER:
         this.setUserCard(UserIcon.PHONE_NUMBER, 'My phone number is', this.user?.phone);
         break;
+      case UserIcon.PERSON:
       default:
         this.setUserCard(
           UserIcon.PERSON,
